@@ -8,7 +8,7 @@ public class Livre implements Document {
 	private int etat; // 0  = libre, 1 = reservé, 2 = emprunté
 	private Abonne ab;
 	private Timer timerReserve;
-	private Timer timerRendre;
+	private Timer timerBanAbo;
 	
 	public Livre(int id, String nom){
 		this.id = id;
@@ -16,7 +16,7 @@ public class Livre implements Document {
 		this.etat = 0;
 		ab = null;
 		timerReserve = null;
-		timerRendre = null;
+		timerBanAbo = null;
 	}
 	
 	
@@ -57,8 +57,8 @@ public class Livre implements Document {
 		c.add(Calendar.MINUTE, 1);
 		Calendar now = Calendar.getInstance();
 		
-		timerRendre = new Timer();
-		timerRendre.schedule(new TimerBanAbo(this),c.getTimeInMillis() - now.getTimeInMillis());
+		timerBanAbo = new Timer();
+		timerBanAbo.schedule(new TimerBanAbo(this),c.getTimeInMillis() - now.getTimeInMillis());
 		
 		if (timerReserve != null)
 			timerReserve.cancel();
