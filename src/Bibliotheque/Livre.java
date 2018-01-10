@@ -1,4 +1,5 @@
 package Bibliotheque;
+import java.util.Calendar;
 import java.util.Timer;
 
 public class Livre implements Document {
@@ -6,13 +7,16 @@ public class Livre implements Document {
 	private String nom;
 	private int etat; // 0  = libre, 1 = reservé, 2 = emprunté
 	private Abonne ab;
-	private Timer t = null;
+	private Timer timerReserve;
+	private Timer timerRendre;
 	
 	public Livre(int id, String nom){
 		this.id = id;
 		this.nom = nom;
 		this.etat = 0;
 		ab = null;
+		timerReserve = null;
+		timerRendre = null;
 	}
 	
 	
@@ -27,9 +31,9 @@ public class Livre implements Document {
 			throw new PasLibreException(this);
 		this.etat = 1;
 		this.ab = ab;
-		long delay = 30000; //delai avant le lancement de la tache programmer par le timer
-		t = new Timer();
-		t.schedule(new TimerRendre(this), delay);
+		long delay = 30000; //delai avant le lancement de la tache programmer par le timer(ici 30 sec), pour deux heure remplacer par 7200000
+		timerReserve = new Timer();
+		timerReserve.schedule(new TimerRendre(this), delay);
 	}
 
 	@Override
@@ -38,17 +42,36 @@ public class Livre implements Document {
 			throw new PasLibreException(this);
 		this.etat = 2;
 		this.ab = ab;
-		if (t != null)
-			t.cancel();
+		
+		Calendar c = Calendar.getInstance();
+			
+		
+		/*le timer est initialiser a 1 minute ici pour réaliser les tests
+		 * pour passer au 14 jour demandé remplacer la ligne par :
+		 *  c.add(Calendar.DAY_OF_YEAR, 14);
+		 */	
+		c.add(Calendar.MINUTE, 1);
+		Calendar now = Calendar.getInstance();
+		
+		timerRendre = new Timer();
+		timerRendre.schedule(new TimerBanAbo(this),c.getTimeInMillis() - now.getTimeInMillis());
+		
+		if (timerReserve != null)
+			timerReserve.cancel();
 	}
 
 	@Override
 	public void retour() {
 		etat = 0;
+		ab = null;
 	}
 
 	public int getEtat() {
 		return etat;
+	}
+	
+	public Abonne getAb(){
+		return ab;
 	}
 	
 	

@@ -34,9 +34,16 @@ public class ServiceRendre implements IService{
 				l = b.getDoc(numLivre);
 				if (l == null)
 					socketOut.println("Ce Livre n'existe pas !##Veuillez rentrer le numéro du livre à rendre");
-				else 
-					l.retour();
+				
 			}
+			
+			socketOut.println("Le Livre est il abimé ?");
+			str = socketIn.readLine();
+			
+			if (str.equals("O"))
+				l.getAb().ban();
+			
+			l.retour();
 			
 			s.close();
 		} catch (IOException e) {
