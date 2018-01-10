@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import Bibliotheque.Abonne;
+import Bibliotheque.AbonneBanEx;
 import Bibliotheque.Bibliotheque;
 import Bibliotheque.Livre;
 import Bibliotheque.PasLibreException;
@@ -52,6 +53,9 @@ public class ServiceReserver implements IService {
 					try {
 						l.reserver(a);
 					} catch (PasLibreException e) {			
+						socketOut.println(e + "##Appuyer sur Entrée");
+						socketIn.readLine();
+					} catch (AbonneBanEx e) {
 						socketOut.println(e + "##Appuyer sur Entrée");
 						socketIn.readLine();
 					}			

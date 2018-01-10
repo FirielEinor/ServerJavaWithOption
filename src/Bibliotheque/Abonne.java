@@ -30,6 +30,10 @@ public class Abonne {
 		return this.nom;
 	}
 	
+	public boolean isPeutEmprunter(){
+		return peutEmprunter;
+	}
+	
 	public void ban(){
 		peutEmprunter = false;
 		tempsBan = new Timer();

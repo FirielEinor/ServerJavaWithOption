@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import Bibliotheque.Abonne;
+import Bibliotheque.AbonneBanEx;
 import Bibliotheque.Bibliotheque;
 import Bibliotheque.Livre;
 import Bibliotheque.PasLibreException;
@@ -53,6 +54,9 @@ public class ServiceEmprunter implements IService {
 						l.emprunter(a);
 					} catch (PasLibreException e) {
 						socketOut.println(e + "##Appuyer sur Entrée");
+						socketIn.readLine();
+					} catch (AbonneBanEx e) {
+						socketOut.println(e + "##Appuyer sur Entrée"); //on attend la reponse du client avant de fermer le serveur pour eviter IOException coté client
 						socketIn.readLine();
 					}
 				}
