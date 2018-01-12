@@ -68,8 +68,10 @@ public class Livre implements Document {
 
 	@Override
 	public void retour(boolean abime) {
-		if (abime){
+		if (ab != null){
+		if (abime)
 			ab.ban();
+		if (!ab.isPeutEmprunter()){
 			Timer tempsBan = new Timer();
 		
 			Calendar c = Calendar.getInstance();
@@ -82,6 +84,7 @@ public class Livre implements Document {
 			c.add(Calendar.MINUTE, 1);
 			Calendar now = Calendar.getInstance();
 			tempsBan.schedule(new TimerUnbanAbo(ab), c.getTimeInMillis() - now.getTimeInMillis());
+		}
 		}
 		etat = 0;
 		ab = null;
