@@ -9,6 +9,7 @@ public class Livre implements Document {
 	private Abonne ab;
 	private Timer timerReserve;
 	private Timer timerBanAbo;
+	private boolean retard;
 	
 	public Livre(int id, String nom){
 		this.id = id;
@@ -17,6 +18,7 @@ public class Livre implements Document {
 		ab = null;
 		timerReserve = null;
 		timerBanAbo = null;
+		retard = false;
 	}
 	
 	
@@ -58,7 +60,7 @@ public class Livre implements Document {
 		Calendar now = Calendar.getInstance();
 		
 		timerBanAbo = new Timer();
-		timerBanAbo.schedule(new TimerBanAbo(this),c.getTimeInMillis() - now.getTimeInMillis());
+		timerBanAbo.schedule(new TimerRetardAbo(this),c.getTimeInMillis() - now.getTimeInMillis());
 		
 		if (timerReserve != null)
 			timerReserve.cancel();
@@ -81,5 +83,13 @@ public class Livre implements Document {
 	
 	public int getId(){
 		return this.id;
+	}
+	
+	public void setRetard(boolean t){
+		retard = t;
+	}
+	
+	public boolean estRetard(){
+		return retard;
 	}
 }
