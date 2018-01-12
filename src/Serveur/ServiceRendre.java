@@ -40,7 +40,7 @@ public class ServiceRendre implements IService{
 			socketOut.println("Le Livre est il abimé ?(O/N)");
 			str = socketIn.readLine();
 			
-			if (str.equals("O"))
+			if (str.equals("o"))
 				l.getAb().ban();
 			
 			l.retour();
