@@ -12,6 +12,7 @@ public class TimerRendre extends TimerTask {
 	@Override
 	public void run() {
 		l.retour();
+		System.out.println("Fin de la reservation du livre " + l.getId());
 	}
 
 }

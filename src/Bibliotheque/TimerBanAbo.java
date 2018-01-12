@@ -14,6 +14,7 @@ public class TimerBanAbo extends TimerTask {
 	@Override
 	public void run() {
 		l.getAb().ban();
+		System.out.println("Le timer de ban se lance");
 	}
 
 }

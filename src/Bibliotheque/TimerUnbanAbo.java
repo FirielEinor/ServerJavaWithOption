@@ -14,6 +14,7 @@ public class TimerUnbanAbo extends TimerTask {
 	@Override
 	public void run() {
 		ab.unban();
+		System.out.println("Fin du ban de " + ab.getNom());
 	}
 
 }
