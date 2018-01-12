@@ -29,20 +29,15 @@ public class Abonne {
 		return this.nom;
 	}
 	
-	public boolean isPeutEmprunter(){
+	public synchronized boolean isPeutEmprunter(){
 		return peutEmprunter;
 	}
 	
-	public void ban(){
-		peutEmprunter = false;
-		
-		
-		
-		
-		
+	public synchronized void ban(){
+		peutEmprunter = false;	
 	}
 	
-	public void unban(){
+	public synchronized void unban(){
 		peutEmprunter = true;
 	}
 }
