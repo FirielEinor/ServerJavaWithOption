@@ -4,16 +4,16 @@ import java.util.TimerTask;
 
 public class TimerRetardAbo extends TimerTask {
 	
-	private Livre l;
+	private Abonne ab;
 	
-	public TimerRetardAbo(Livre l) {
-		this.l = l;
+	public TimerRetardAbo(Abonne a) {
+		this.ab = a;
 	}
 	
 	
 	@Override
 	public void run() {
-		l.setRetard(true);
+		ab.ban();
 		System.out.println("Le timer de retard se lance");
 	}
 

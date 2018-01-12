@@ -8,7 +8,7 @@ import java.net.Socket;
 import Bibliotheque.Abonne;
 import Bibliotheque.AbonneBanEx;
 import Bibliotheque.Bibliotheque;
-import Bibliotheque.Livre;
+import Bibliotheque.Document;
 import Bibliotheque.PasLibreException;
 
 public class ServiceEmprunter implements IService {
@@ -29,7 +29,7 @@ public class ServiceEmprunter implements IService {
 			int numAbo;
 			int numLivre;
 			Abonne a = null;
-			Livre l = null;
+			Document l = null;
 			
 			socketOut.println("Veuillez rentrer votre numéro d'abonné");
 			

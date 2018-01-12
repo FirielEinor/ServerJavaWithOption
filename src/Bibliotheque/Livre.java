@@ -60,14 +60,29 @@ public class Livre implements Document {
 		Calendar now = Calendar.getInstance();
 		
 		timerBanAbo = new Timer();
-		timerBanAbo.schedule(new TimerRetardAbo(this),c.getTimeInMillis() - now.getTimeInMillis());
+		timerBanAbo.schedule(new TimerRetardAbo(ab),c.getTimeInMillis() - now.getTimeInMillis());
 		
 		if (timerReserve != null)
 			timerReserve.cancel();
 	}
 
 	@Override
-	public void retour() {
+	public void retour(boolean abime) {
+		if (abime){
+			ab.ban();
+			Timer tempsBan = new Timer();
+		
+			Calendar c = Calendar.getInstance();
+			
+		
+			/*le timer est initialiser a 1 minute ici pour réaliser les tests
+			 * pour passer au 1 mois demandé remplacer la ligne par :
+			 *  c.add(Calendar.MONTH, 1);
+			 */	
+			c.add(Calendar.MINUTE, 1);
+			Calendar now = Calendar.getInstance();
+			tempsBan.schedule(new TimerUnbanAbo(ab), c.getTimeInMillis() - now.getTimeInMillis());
+		}
 		etat = 0;
 		ab = null;
 	}

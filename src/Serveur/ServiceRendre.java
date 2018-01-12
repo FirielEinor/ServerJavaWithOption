@@ -6,7 +6,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import Bibliotheque.Bibliotheque;
-import Bibliotheque.Livre;
+import Bibliotheque.Document;
+
 
 public class ServiceRendre implements IService{
 	
@@ -24,7 +25,7 @@ public class ServiceRendre implements IService{
 			BufferedReader socketIn = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String str = "";
 			int numLivre;
-			Livre l = null;
+			Document l = null;
 			
 			socketOut.println("Veuiller rentrer le numéro du livre à rendre");
 			
@@ -40,12 +41,11 @@ public class ServiceRendre implements IService{
 			socketOut.println("Le Livre est il abimé ?(O/N)");
 			str = socketIn.readLine();
 			
-			if (str.equals("o") || l.estRetard()){
-				l.getAb().ban();
-				l.setRetard(false);
+			if (str.equals("o")){
+				l.retour(true);
 			}
 				
-			l.retour();
+			l.retour(false);
 			
 			s.close();
 		} catch (IOException e) {

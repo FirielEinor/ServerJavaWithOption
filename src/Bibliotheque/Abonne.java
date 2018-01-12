@@ -7,7 +7,6 @@ public class Abonne {
 	private int id;
 	private String nom;
 	private boolean peutEmprunter;
-	private Timer tempsBan;
 	
 	public Abonne(int id,String nom){
 		this.id = id;
@@ -36,21 +35,11 @@ public class Abonne {
 	
 	public void ban(){
 		peutEmprunter = false;
-		tempsBan = new Timer();
-		
-		Calendar c = Calendar.getInstance();
-			
-		
-		/*le timer est initialiser a 1 minute ici pour réaliser les tests
-		 * pour passer au 1 mois demandé remplacer la ligne par :
-		 *  c.add(Calendar.MONTH, 1);
-		 */	
-		c.add(Calendar.MINUTE, 1);
-		Calendar now = Calendar.getInstance();
 		
 		
 		
-		tempsBan.schedule(new TimerUnbanAbo(this), c.getTimeInMillis() - now.getTimeInMillis());
+		
+		
 	}
 	
 	public void unban(){
