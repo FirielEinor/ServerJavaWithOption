@@ -31,8 +31,12 @@ public class Livre implements Document {
 	public synchronized void reserver(Abonne ab) throws PasLibreException, AbonneBanEx {
 		if ( (this.etat == 1 && !ab.equals(this.ab)) || this.etat == 2)
 			throw new PasLibreException(this);
-		if (!ab.isPeutEmprunter())
-			throw new AbonneBanEx();
+		
+		synchronized(ab){
+			if (!ab.isPeutEmprunter())
+				throw new AbonneBanEx();
+		}
+		
 		this.etat = 1;
 		this.ab = ab;
 		long delay = 30000; //delai avant le lancement de la tache programmer par le timer(ici 30 sec), pour deux heure remplacer par 7200000
@@ -44,8 +48,11 @@ public class Livre implements Document {
 	public synchronized void emprunter(Abonne ab) throws PasLibreException, AbonneBanEx {
 		if ((this.etat == 1 && !ab.equals(this.ab)) || this.etat == 2)
 			throw new PasLibreException(this);
-		if (!ab.isPeutEmprunter())
-			throw new AbonneBanEx();
+		
+		synchronized(ab){
+			if (!ab.isPeutEmprunter())
+				throw new AbonneBanEx();
+		}
 		this.etat = 2;
 		this.ab = ab;
 		
