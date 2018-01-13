@@ -69,22 +69,22 @@ public class Livre implements Document {
 	@Override
 	public void retour(boolean abime) {
 		if (ab != null){
-		if (abime)
-			ab.ban();
-		if (!ab.isPeutEmprunter()){
-			Timer tempsBan = new Timer();
-		
-			Calendar c = Calendar.getInstance();
+			if (abime)
+				ab.ban();
+			if (!ab.isPeutEmprunter()){
+				Timer tempsBan = new Timer();
 			
+				Calendar c = Calendar.getInstance();		
 		
-			/*le timer est initialiser a 1 minute ici pour réaliser les tests
-			 * pour passer au 1 mois demandé remplacer la ligne par :
-			 *  c.add(Calendar.MONTH, 1);
-			 */	
-			c.add(Calendar.MINUTE, 1);
-			Calendar now = Calendar.getInstance();
-			tempsBan.schedule(new TimerUnbanAbo(ab), c.getTimeInMillis() - now.getTimeInMillis());
-		}
+				/*
+				* le timer est initialiser a 1 minute ici pour réaliser les tests
+			 	* pour passer au 1 mois demandé remplacer la ligne par :
+			 	*  c.add(Calendar.MONTH, 1);
+			 	*/	
+				c.add(Calendar.MINUTE, 1);
+				Calendar now = Calendar.getInstance();
+				tempsBan.schedule(new TimerUnbanAbo(ab), c.getTimeInMillis() - now.getTimeInMillis());
+			}
 		}
 		etat = 0;
 		ab = null;

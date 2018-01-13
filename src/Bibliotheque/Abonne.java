@@ -6,12 +6,12 @@ import java.util.Timer;
 public class Abonne {
 	private int id;
 	private String nom;
-	private boolean peutEmprunter;
+	private int peutEmprunter;
 	
 	public Abonne(int id,String nom){
 		this.id = id;
 		this.nom = nom;
-		peutEmprunter = true;
+		peutEmprunter = 0;
 	}
 	
 	public boolean equals(Abonne a){
@@ -30,14 +30,14 @@ public class Abonne {
 	}
 	
 	public boolean isPeutEmprunter(){
-		return peutEmprunter;
+		return peutEmprunter == 0;
 	}
 	
 	public void ban(){
-		peutEmprunter = false;	
+		++peutEmprunter;	
 	}
 	
 	public void unban(){
-		peutEmprunter = true;
+		--peutEmprunter;
 	}
 }
