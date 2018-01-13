@@ -14,7 +14,8 @@ public class ServiceRendre implements IService{
 	Socket s;
 	Bibliotheque b;
 	
-	public ServiceRendre(Bibliotheque b) {
+	public ServiceRendre(Bibliotheque b, Socket s) {
+		this.s = s;
 		this.b = b;
 	}
 	
@@ -53,9 +54,6 @@ public class ServiceRendre implements IService{
 		}	
 	}
 
-	@Override
-	public void setSocket(Socket s) {
-		this.s = s;
-	}
+
 
 }

@@ -16,8 +16,9 @@ public class ServiceReserver implements IService {
 	Socket s;
 	Bibliotheque b;
 	
-	public ServiceReserver(Bibliotheque b) {
+	public ServiceReserver(Bibliotheque b,Socket s) {
 		this.b = b;
+		this.s = s;
 	}
 	
 	@Override
@@ -67,9 +68,5 @@ public class ServiceReserver implements IService {
 		}
 	}
 
-	@Override
-	public void setSocket(Socket s) {
-		this.s = s;
-	}
 
 }

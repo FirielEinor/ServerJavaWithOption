@@ -51,14 +51,11 @@ public class Application {
 		try {
 			Bibliotheque b = creerBibliotheque();
 			System.out.println("Connection au serveur !");
+	
+			new Thread(new Serveur(_PORT_RESERVER,1,b)).start();
+			new Thread(new Serveur(_PORT_EMPRUNTER,2,b)).start();
+			new Thread(new Serveur(_PORT_RENDRE,3,b)).start();
 			
-			IService s1 = new ServiceReserver(b);
-			IService s2 = new ServiceEmprunter(b);
-			IService s3 = new ServiceRendre(b);
-			
-			new Thread(new Serveur(_PORT_RESERVER,s1)).start();
-			new Thread(new Serveur(_PORT_EMPRUNTER,s2)).start();
-			new Thread(new Serveur(_PORT_RENDRE,s3)).start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

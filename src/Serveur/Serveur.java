@@ -3,15 +3,19 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Bibliotheque.Bibliotheque;
+
 
 public class Serveur implements Runnable{
 	
 	private ServerSocket maSocketDeServer;
-	private IService s;
+	private int numService;
+	private Bibliotheque b;
 
-	public Serveur(int port, IService s) throws IOException {
+	public Serveur(int port, int numService, Bibliotheque b) throws IOException {
 		maSocketDeServer = new ServerSocket(port);
-		this.s = s;
+		this.numService = numService;
+		this.b = b;
 	}
 	
 	@Override
@@ -20,8 +24,7 @@ public class Serveur implements Runnable{
 			while(true){
 				Socket socketServer;		
 				socketServer = maSocketDeServer.accept();
-				s.setSocket(socketServer);
-				new Thread(s).start();
+				new Thread(FactoryService.creerService(numService, b,socketServer)).start();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

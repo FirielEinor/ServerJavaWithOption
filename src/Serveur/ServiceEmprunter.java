@@ -13,11 +13,12 @@ import Bibliotheque.PasLibreException;
 
 public class ServiceEmprunter implements IService {
 	
-	Socket s;
-	Bibliotheque b;
+	private Socket s;
+	private Bibliotheque b;
 	
-	public ServiceEmprunter(Bibliotheque b) {
+	public ServiceEmprunter(Bibliotheque b,Socket s) {
 		this.b = b;
+		this.s = s;
 	}
 	
 	@Override
@@ -67,10 +68,4 @@ public class ServiceEmprunter implements IService {
 			System.out.println("Le client est partie");
 		}
 	}
-
-	@Override
-	public void setSocket(Socket s) {
-		this.s = s;
-	}
-
 }
