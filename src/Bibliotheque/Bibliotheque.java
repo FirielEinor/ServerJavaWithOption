@@ -4,17 +4,17 @@ import java.util.List;
 public class Bibliotheque {
 	
 	private List<Abonne> listAbo;
-	private List<Livre> listDoc;
+	private List<Document> listDoc;
 	
-	public Bibliotheque(List<Abonne> listAbo,List<Livre> listDoc){
+	public Bibliotheque(List<Abonne> listAbo,List<Document> listDoc){
 		this.listAbo = listAbo;
 		this.listDoc = listDoc;
 	}
 	
 	
-	public Livre getDoc(int id){
-		for(Livre l : listDoc){
-			if (l.getId() == id){
+	public Document getDoc(int id){
+		for(Document l : listDoc){
+			if (l.numero() == id){
 				return l;
 			}
 		}

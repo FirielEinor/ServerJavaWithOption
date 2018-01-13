@@ -9,7 +9,6 @@ public class Livre implements Document {
 	private Abonne ab;
 	private Timer timerReserve;
 	private Timer timerBanAbo;
-	private boolean retard;
 	
 	public Livre(int id, String nom){
 		this.id = id;
@@ -18,7 +17,6 @@ public class Livre implements Document {
 		ab = null;
 		timerReserve = null;
 		timerBanAbo = null;
-		retard = false;
 	}
 	
 	
@@ -96,25 +94,5 @@ public class Livre implements Document {
 		etat = 0;
 		ab = null;
 	}
-
-	public int getEtat() {
-		return etat;
-	}
 	
-	public Abonne getAb(){
-		return ab;
-	}
-	
-	
-	public int getId(){
-		return this.id;
-	}
-	
-	public void setRetard(boolean t){
-		retard = t;
-	}
-	
-	public boolean estRetard(){
-		return retard;
-	}
 }

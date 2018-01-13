@@ -5,6 +5,7 @@ import java.util.List;
 
 import Bibliotheque.Abonne;
 import Bibliotheque.Bibliotheque;
+import Bibliotheque.Document;
 import Bibliotheque.Livre;
 import Serveur.IService;
 import Serveur.Serveur;
@@ -19,10 +20,10 @@ public class Application {
 	public static final int _PORT_RENDRE = 2700;
 	
 	public static Bibliotheque creerBibliotheque(){
-		List<Livre> list = new ArrayList<Livre>();
+		List<Document> list = new ArrayList<Document>();
 		List<Abonne> listA = new ArrayList<Abonne>();
 		
-		Livre d1 = new Livre(1,"Livre1");
+		Document d1 = new Livre(1,"Livre1");
 		list.add(d1);
 		d1 = new Livre(2,"Livre2");
 		list.add(d1);
