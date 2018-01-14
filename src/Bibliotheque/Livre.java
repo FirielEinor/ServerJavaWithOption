@@ -74,6 +74,7 @@ public class Livre implements Document {
 	@Override
 	public void retour(boolean abime) {
 		if (ab != null){
+			timerBanAbo.cancel();
 			if (abime)
 				ab.ban();
 			if (!ab.isPeutEmprunter()){
