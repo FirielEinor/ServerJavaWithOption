@@ -9,6 +9,6 @@ public class PasLibreException extends Exception {
 	}
 	
 	public String toString(){
-		return ("Ce document n'est aps disponible");
+		return ("Ce document n'est pas disponible");
 	}
 }
